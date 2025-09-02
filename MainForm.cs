@@ -161,7 +161,18 @@ namespace TwinCatTool
                     allVariables = variableManager.GetVariables();
                 }
 
-                // 显示所有变量
+                // 先读取当前变量的最新值
+                if (variableReader != null)
+                {
+                    await variableReader.ReadMultipleVariablesAsync(allVariables);
+
+                    // 过滤掉读取失败或无值的变量（认为不可读或无访问权限）
+                    allVariables = allVariables
+                        .Where(v => !string.IsNullOrEmpty(v.Value) && !v.Value.StartsWith("错误:"))
+                        .ToList();
+                }
+
+                // 显示所有变量（含最新值）
                 DisplayVariables(allVariables);
                 if (lblStatus != null) lblStatus.Text = $"已连接 - 共 {allVariables.Count} 个变量";
             }

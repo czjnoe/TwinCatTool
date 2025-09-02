@@ -49,6 +49,7 @@ namespace TwinCatTool
 
                 foreach (var symbol in loader.Symbols)
                 {
+                    // 保留所有变量，这里不做权限过滤，避免 SDK 兼容性问题
                     var dataTypeName = symbol.DataType != null ? symbol.DataType.Name : symbol.TypeName;
                     var size = symbol.Size;
                     var comment = symbol.Comment ?? string.Empty;
