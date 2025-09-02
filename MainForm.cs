@@ -252,11 +252,6 @@ namespace TwinCatTool
             }
         }
 
-        private void BtnTest_Click(object? sender, EventArgs e)
-        {
-            SimpleTest.TestConnection();
-        }
-
         private void OnAdsNotification(object? sender, AdsNotificationEventArgs e)
         {
             // 处理变量值变化通知

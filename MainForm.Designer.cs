@@ -33,211 +33,199 @@ namespace TwinCatTool
         /// </summary>
         private void InitializeComponent()
         {
-            this.connectionPanel = new System.Windows.Forms.Panel();
-            this.lblAmsNetId = new System.Windows.Forms.Label();
-            this.txtAmsNetId = new System.Windows.Forms.TextBox();
-            this.lblPort = new System.Windows.Forms.Label();
-            this.txtPort = new System.Windows.Forms.TextBox();
-            this.btnConnect = new System.Windows.Forms.Button();
-            this.btnDisconnect = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.chkAutoRefresh = new System.Windows.Forms.CheckBox();
-            this.btnTest = new System.Windows.Forms.Button();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.searchPanel = new System.Windows.Forms.Panel();
-            this.lblSearch = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.listPanel = new System.Windows.Forms.Panel();
-            this.listViewVariables = new System.Windows.Forms.ListView();
-            this.connectionPanel.SuspendLayout();
-            this.searchPanel.SuspendLayout();
-            this.listPanel.SuspendLayout();
-            this.SuspendLayout();
+            connectionPanel = new Panel();
+            lblAmsNetId = new Label();
+            txtAmsNetId = new TextBox();
+            lblPort = new Label();
+            txtPort = new TextBox();
+            btnConnect = new Button();
+            btnDisconnect = new Button();
+            btnRefresh = new Button();
+            chkAutoRefresh = new CheckBox();
+            lblStatus = new Label();
+            searchPanel = new Panel();
+            lblSearch = new Label();
+            txtSearch = new TextBox();
+            listPanel = new Panel();
+            listViewVariables = new ListView();
+            connectionPanel.SuspendLayout();
+            searchPanel.SuspendLayout();
+            listPanel.SuspendLayout();
+            SuspendLayout();
             // 
             // connectionPanel
             // 
-            this.connectionPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.connectionPanel.Controls.Add(this.lblAmsNetId);
-            this.connectionPanel.Controls.Add(this.txtAmsNetId);
-            this.connectionPanel.Controls.Add(this.lblPort);
-            this.connectionPanel.Controls.Add(this.txtPort);
-            this.connectionPanel.Controls.Add(this.btnConnect);
-            this.connectionPanel.Controls.Add(this.btnDisconnect);
-            this.connectionPanel.Controls.Add(this.btnRefresh);
-            this.connectionPanel.Controls.Add(this.chkAutoRefresh);
-            this.connectionPanel.Controls.Add(this.btnTest);
-            this.connectionPanel.Controls.Add(this.lblStatus);
-            this.connectionPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.connectionPanel.Location = new System.Drawing.Point(0, 0);
-            this.connectionPanel.Name = "connectionPanel";
-            this.connectionPanel.Size = new System.Drawing.Size(1000, 120);
-            this.connectionPanel.TabIndex = 0;
+            connectionPanel.BorderStyle = BorderStyle.FixedSingle;
+            connectionPanel.Controls.Add(lblAmsNetId);
+            connectionPanel.Controls.Add(txtAmsNetId);
+            connectionPanel.Controls.Add(lblPort);
+            connectionPanel.Controls.Add(txtPort);
+            connectionPanel.Controls.Add(btnConnect);
+            connectionPanel.Controls.Add(btnDisconnect);
+            connectionPanel.Controls.Add(btnRefresh);
+            connectionPanel.Controls.Add(chkAutoRefresh);
+            connectionPanel.Controls.Add(lblStatus);
+            connectionPanel.Dock = DockStyle.Top;
+            connectionPanel.Location = new Point(0, 0);
+            connectionPanel.Name = "connectionPanel";
+            connectionPanel.Size = new Size(875, 102);
+            connectionPanel.TabIndex = 0;
             // 
             // lblAmsNetId
             // 
-            this.lblAmsNetId.AutoSize = true;
-            this.lblAmsNetId.Location = new System.Drawing.Point(10, 15);
-            this.lblAmsNetId.Name = "lblAmsNetId";
-            this.lblAmsNetId.Size = new System.Drawing.Size(80, 20);
-            this.lblAmsNetId.TabIndex = 0;
-            this.lblAmsNetId.Text = "AMS Net ID:";
+            lblAmsNetId.AutoSize = true;
+            lblAmsNetId.Location = new Point(9, 13);
+            lblAmsNetId.Name = "lblAmsNetId";
+            lblAmsNetId.Size = new Size(80, 17);
+            lblAmsNetId.TabIndex = 0;
+            lblAmsNetId.Text = "AMS Net ID:";
             // 
             // txtAmsNetId
             // 
-            this.txtAmsNetId.Location = new System.Drawing.Point(100, 12);
-            this.txtAmsNetId.Name = "txtAmsNetId";
-            this.txtAmsNetId.Size = new System.Drawing.Size(150, 27);
-            this.txtAmsNetId.TabIndex = 1;
-            this.txtAmsNetId.Text = "192.168.1.10.1.1";
+            txtAmsNetId.Location = new Point(88, 10);
+            txtAmsNetId.Name = "txtAmsNetId";
+            txtAmsNetId.Size = new Size(132, 23);
+            txtAmsNetId.TabIndex = 1;
+            txtAmsNetId.Text = "192.168.1.10.1.1";
             // 
             // lblPort
             // 
-            this.lblPort.AutoSize = true;
-            this.lblPort.Location = new System.Drawing.Point(270, 15);
-            this.lblPort.Name = "lblPort";
-            this.lblPort.Size = new System.Drawing.Size(40, 20);
-            this.lblPort.TabIndex = 2;
-            this.lblPort.Text = "端口:";
+            lblPort.AutoSize = true;
+            lblPort.Location = new Point(236, 13);
+            lblPort.Name = "lblPort";
+            lblPort.Size = new Size(35, 17);
+            lblPort.TabIndex = 2;
+            lblPort.Text = "端口:";
             // 
             // txtPort
             // 
-            this.txtPort.Location = new System.Drawing.Point(320, 12);
-            this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(60, 27);
-            this.txtPort.TabIndex = 3;
-            this.txtPort.Text = "851";
+            txtPort.Location = new Point(280, 10);
+            txtPort.Name = "txtPort";
+            txtPort.Size = new Size(53, 23);
+            txtPort.TabIndex = 3;
+            txtPort.Text = "851";
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(400, 10);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(80, 30);
-            this.btnConnect.TabIndex = 4;
-            this.btnConnect.Text = "连接";
-            this.btnConnect.UseVisualStyleBackColor = true;
-            this.btnConnect.Click += new System.EventHandler(this.BtnConnect_Click);
+            btnConnect.Location = new Point(350, 8);
+            btnConnect.Name = "btnConnect";
+            btnConnect.Size = new Size(70, 26);
+            btnConnect.TabIndex = 4;
+            btnConnect.Text = "连接";
+            btnConnect.UseVisualStyleBackColor = true;
+            btnConnect.Click += BtnConnect_Click;
             // 
             // btnDisconnect
             // 
-            this.btnDisconnect.Enabled = false;
-            this.btnDisconnect.Location = new System.Drawing.Point(490, 10);
-            this.btnDisconnect.Name = "btnDisconnect";
-            this.btnDisconnect.Size = new System.Drawing.Size(80, 30);
-            this.btnDisconnect.TabIndex = 5;
-            this.btnDisconnect.Text = "断开";
-            this.btnDisconnect.UseVisualStyleBackColor = true;
-            this.btnDisconnect.Click += new System.EventHandler(this.BtnDisconnect_Click);
+            btnDisconnect.Enabled = false;
+            btnDisconnect.Location = new Point(429, 8);
+            btnDisconnect.Name = "btnDisconnect";
+            btnDisconnect.Size = new Size(70, 26);
+            btnDisconnect.TabIndex = 5;
+            btnDisconnect.Text = "断开";
+            btnDisconnect.UseVisualStyleBackColor = true;
+            btnDisconnect.Click += BtnDisconnect_Click;
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Enabled = false;
-            this.btnRefresh.Location = new System.Drawing.Point(580, 10);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(80, 30);
-            this.btnRefresh.TabIndex = 6;
-            this.btnRefresh.Text = "刷新变量";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
+            btnRefresh.Enabled = false;
+            btnRefresh.Location = new Point(508, 8);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(70, 26);
+            btnRefresh.TabIndex = 6;
+            btnRefresh.Text = "刷新变量";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += BtnRefresh_Click;
             // 
             // chkAutoRefresh
             // 
-            this.chkAutoRefresh.AutoSize = true;
-            this.chkAutoRefresh.Enabled = false;
-            this.chkAutoRefresh.Location = new System.Drawing.Point(680, 15);
-            this.chkAutoRefresh.Name = "chkAutoRefresh";
-            this.chkAutoRefresh.Size = new System.Drawing.Size(80, 24);
-            this.chkAutoRefresh.TabIndex = 7;
-            this.chkAutoRefresh.Text = "自动刷新";
-            this.chkAutoRefresh.UseVisualStyleBackColor = true;
-            this.chkAutoRefresh.CheckedChanged += new System.EventHandler(this.ChkAutoRefresh_CheckedChanged);
-            // 
-            // btnTest
-            // 
-            this.btnTest.Location = new System.Drawing.Point(780, 10);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(80, 30);
-            this.btnTest.TabIndex = 8;
-            this.btnTest.Text = "测试连接";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.BtnTest_Click);
+            chkAutoRefresh.AutoSize = true;
+            chkAutoRefresh.Enabled = false;
+            chkAutoRefresh.Location = new Point(595, 13);
+            chkAutoRefresh.Name = "chkAutoRefresh";
+            chkAutoRefresh.Size = new Size(75, 21);
+            chkAutoRefresh.TabIndex = 7;
+            chkAutoRefresh.Text = "自动刷新";
+            chkAutoRefresh.UseVisualStyleBackColor = true;
+            chkAutoRefresh.CheckedChanged += ChkAutoRefresh_CheckedChanged;
             // 
             // lblStatus
             // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.ForeColor = System.Drawing.Color.Red;
-            this.lblStatus.Location = new System.Drawing.Point(10, 50);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(69, 20);
-            this.lblStatus.TabIndex = 9;
-            this.lblStatus.Text = "未连接";
+            lblStatus.AutoSize = true;
+            lblStatus.ForeColor = Color.Red;
+            lblStatus.Location = new Point(9, 42);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(44, 17);
+            lblStatus.TabIndex = 9;
+            lblStatus.Text = "未连接";
             // 
             // searchPanel
             // 
-            this.searchPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.searchPanel.Controls.Add(this.lblSearch);
-            this.searchPanel.Controls.Add(this.txtSearch);
-            this.searchPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.searchPanel.Location = new System.Drawing.Point(0, 120);
-            this.searchPanel.Name = "searchPanel";
-            this.searchPanel.Size = new System.Drawing.Size(1000, 60);
-            this.searchPanel.TabIndex = 1;
+            searchPanel.BorderStyle = BorderStyle.FixedSingle;
+            searchPanel.Controls.Add(lblSearch);
+            searchPanel.Controls.Add(txtSearch);
+            searchPanel.Dock = DockStyle.Top;
+            searchPanel.Location = new Point(0, 102);
+            searchPanel.Name = "searchPanel";
+            searchPanel.Size = new Size(875, 51);
+            searchPanel.TabIndex = 1;
             // 
             // lblSearch
             // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Location = new System.Drawing.Point(10, 20);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(70, 20);
-            this.lblSearch.TabIndex = 0;
-            this.lblSearch.Text = "搜索变量:";
+            lblSearch.AutoSize = true;
+            lblSearch.Location = new Point(9, 17);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Size = new Size(59, 17);
+            lblSearch.TabIndex = 0;
+            lblSearch.Text = "搜索变量:";
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(90, 17);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PlaceholderText = "输入变量名进行模糊搜索...";
-            this.txtSearch.Size = new System.Drawing.Size(300, 27);
-            this.txtSearch.TabIndex = 1;
-            this.txtSearch.TextChanged += new System.EventHandler(this.TxtSearch_TextChanged);
+            txtSearch.Location = new Point(79, 14);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "输入变量名进行模糊搜索...";
+            txtSearch.Size = new Size(263, 23);
+            txtSearch.TabIndex = 1;
+            txtSearch.TextChanged += TxtSearch_TextChanged;
             // 
             // listPanel
             // 
-            this.listPanel.Controls.Add(this.listViewVariables);
-            this.listPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listPanel.Location = new System.Drawing.Point(0, 180);
-            this.listPanel.Name = "listPanel";
-            this.listPanel.Size = new System.Drawing.Size(1000, 520);
-            this.listPanel.TabIndex = 2;
+            listPanel.Controls.Add(listViewVariables);
+            listPanel.Dock = DockStyle.Fill;
+            listPanel.Location = new Point(0, 153);
+            listPanel.Name = "listPanel";
+            listPanel.Size = new Size(875, 442);
+            listPanel.TabIndex = 2;
             // 
             // listViewVariables
             // 
-            this.listViewVariables.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewVariables.FullRowSelect = true;
-            this.listViewVariables.GridLines = true;
-            this.listViewVariables.Location = new System.Drawing.Point(0, 0);
-            this.listViewVariables.Name = "listViewVariables";
-            this.listViewVariables.Size = new System.Drawing.Size(1000, 520);
-            this.listViewVariables.TabIndex = 0;
-            this.listViewVariables.UseCompatibleStateImageBehavior = false;
-            this.listViewVariables.View = System.Windows.Forms.View.Details;
+            listViewVariables.Dock = DockStyle.Fill;
+            listViewVariables.FullRowSelect = true;
+            listViewVariables.GridLines = true;
+            listViewVariables.Location = new Point(0, 0);
+            listViewVariables.Name = "listViewVariables";
+            listViewVariables.Size = new Size(875, 442);
+            listViewVariables.TabIndex = 0;
+            listViewVariables.UseCompatibleStateImageBehavior = false;
+            listViewVariables.View = View.Details;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 700);
-            this.Controls.Add(this.listPanel);
-            this.Controls.Add(this.searchPanel);
-            this.Controls.Add(this.connectionPanel);
-            this.Name = "MainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Beckhoff TwinCAT 变量查看器";
-            this.connectionPanel.ResumeLayout(false);
-            this.connectionPanel.PerformLayout();
-            this.searchPanel.ResumeLayout(false);
-            this.searchPanel.PerformLayout();
-            this.listPanel.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(875, 595);
+            Controls.Add(listPanel);
+            Controls.Add(searchPanel);
+            Controls.Add(connectionPanel);
+            Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Beckhoff TwinCAT 变量查看器";
+            connectionPanel.ResumeLayout(false);
+            connectionPanel.PerformLayout();
+            searchPanel.ResumeLayout(false);
+            searchPanel.PerformLayout();
+            listPanel.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
@@ -251,7 +239,6 @@ namespace TwinCatTool
         private System.Windows.Forms.Button btnDisconnect;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.CheckBox chkAutoRefresh;
-        private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Panel searchPanel;
         private System.Windows.Forms.Label lblSearch;
