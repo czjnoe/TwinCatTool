@@ -25,19 +25,19 @@ namespace TwinCatTool
             {
                 // 尝试使用符号信息加载器 - 新版本API可能不同
                 // 暂时使用示例变量，后续可以根据实际API调整
-                variables.AddRange(GetSampleVariables());
+                variables.AddRange(GetAllVariables());
             }
             catch (Exception ex)
             {
                 // 如果无法获取符号信息，返回示例变量
-                variables.AddRange(GetSampleVariables());
+                variables.AddRange(GetAllVariables());
                 Console.WriteLine($"获取符号信息失败: {ex.Message}");
             }
 
             return variables;
         }
 
-        private List<VariableInfo> GetSampleVariables()
+        private List<VariableInfo> GetAllVariables()
         {
             var variables = new List<VariableInfo>();
 
