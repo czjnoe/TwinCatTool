@@ -33,7 +33,6 @@ namespace TwinCatTool
             adsClient = new AdsClient();
             adsClient.AdsNotification += OnAdsNotification;
 
-            // 初始化定时器用于定期刷新变量值
             refreshTimer = new System.Windows.Forms.Timer();
             refreshTimer.Interval = 1000; // 1秒刷新一次
             refreshTimer.Tick += RefreshTimer_Tick;
@@ -118,11 +117,8 @@ namespace TwinCatTool
                     lblStatus.Text = "已断开";
                     lblStatus.ForeColor = Color.Red;
                 }
-
-                // 停止自动刷新
                 if (refreshTimer != null) refreshTimer.Stop();
 
-                // 清空变量列表
                 allVariables.Clear();
                 if (listViewVariables != null) listViewVariables.Items.Clear();
             }
@@ -140,7 +136,6 @@ namespace TwinCatTool
         private async Task RefreshVariables()
         {
             if (!isConnected || adsClient == null) return;
-
             try
             {
                 if (btnRefresh != null) btnRefresh.Enabled = false;
@@ -166,8 +161,7 @@ namespace TwinCatTool
                         .ToList();
                 }
 
-                // 显示所有变量（含最新值）
-                DisplayVariables(allVariables);
+                DisplayVariables(allVariables);// 显示所有变量（含最新值）
                 if (lblStatus != null) lblStatus.Text = $"已连接 - 共 {allVariables.Count} 个变量";
             }
             catch (Exception ex)
@@ -195,7 +189,6 @@ namespace TwinCatTool
             if (listViewVariables == null) return;
 
             listViewVariables.Items.Clear();
-
             foreach (var variable in variables)
             {
                 var item = new ListViewItem(variable.Name);
@@ -213,7 +206,6 @@ namespace TwinCatTool
         private async void RefreshTimer_Tick(object? sender, EventArgs e)
         {
             if (!isConnected || variableReader == null) return;
-
             try
             {
                 // 只刷新当前显示的变量值
@@ -266,10 +258,6 @@ namespace TwinCatTool
                 Invoke(new Action(() => OnAdsNotification(sender, e)));
                 return;
             }
-
-            // 更新对应变量的值
-            // 注意：新版本的API可能没有NotificationHandle属性
-            // 这里可以根据需要更新UI中的变量值
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
