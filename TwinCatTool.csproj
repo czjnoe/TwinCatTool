@@ -11,7 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Beckhoff.TwinCAT.Ads" Version="6.2.485" />
+    <PackageReference Include="Beckhoff.TwinCAT.Ads" Version="6.2.511" />
+    <PackageReference Include="Beckhoff.TwinCAT.Ads.Abstractions" Version="6.2.511" />
+    <PackageReference Include="Beckhoff.TwinCAT.Ads.ConfigurationProviders" Version="6.2.511" />
+    <PackageReference Include="Beckhoff.TwinCAT.Ads.Reactive" Version="6.2.511" />
+    <PackageReference Include="Beckhoff.TwinCAT.Ads.Server" Version="6.2.511" />
+    <PackageReference Include="Beckhoff.TwinCAT.Ads.SymbolicServer" Version="6.2.511" />
+    <PackageReference Include="Beckhoff.TwinCAT.Ads.TcpRouter" Version="6.2.511" />
   </ItemGroup>
 
 </Project>

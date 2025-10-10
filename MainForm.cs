@@ -32,7 +32,7 @@ namespace TwinCatTool
         {
             adsClient = new AdsClient();
             adsClient.AdsNotification += OnAdsNotification;
-            
+
             // 初始化定时器用于定期刷新变量值
             refreshTimer = new System.Windows.Forms.Timer();
             refreshTimer.Interval = 1000; // 1秒刷新一次
@@ -44,6 +44,7 @@ namespace TwinCatTool
             listViewVariables.Columns.Add("变量名", 300);
             listViewVariables.Columns.Add("数据类型", 150);
             listViewVariables.Columns.Add("值", 300);
+            listViewVariables.Columns.Add("可写", 80);
             listViewVariables.Columns.Add("地址", 80);
             listViewVariables.Columns.Add("大小", 60);
             listViewVariables.Columns.Add("注释", 300);
@@ -198,18 +199,19 @@ namespace TwinCatTool
         private void DisplayVariables(List<VariableInfo> variables)
         {
             if (listViewVariables == null) return;
-            
+
             listViewVariables.Items.Clear();
-            
+
             foreach (var variable in variables)
             {
                 var item = new ListViewItem(variable.Name);
                 item.SubItems.Add(variable.DataType);
                 item.SubItems.Add(variable.Value ?? "");
+                item.SubItems.Add(variable.IsWritable.ToString());
                 item.SubItems.Add($"0x{variable.Address:X}");
                 item.SubItems.Add(variable.Size.ToString());
                 item.SubItems.Add(variable.Comment);
-                
+
                 listViewVariables.Items.Add(item);
             }
         }
@@ -223,13 +225,13 @@ namespace TwinCatTool
                 // 只刷新当前显示的变量值
                 var currentVariables = GetCurrentDisplayedVariables();
                 await variableReader.ReadMultipleVariablesAsync(currentVariables);
-                
+
                 // 更新显示
                 var searchText = txtSearch.Text.ToLower();
-                var filteredVariables = allVariables.Where(v => 
-                    v.Name.ToLower().Contains(searchText) || 
+                var filteredVariables = allVariables.Where(v =>
+                    v.Name.ToLower().Contains(searchText) ||
                     v.Comment.ToLower().Contains(searchText)).ToList();
-                
+
                 DisplayVariables(filteredVariables);
             }
             catch (Exception ex)
@@ -251,7 +253,7 @@ namespace TwinCatTool
         private void ChkAutoRefresh_CheckedChanged(object? sender, EventArgs e)
         {
             if (refreshTimer == null) return;
-            
+
             if (chkAutoRefresh?.Checked == true)
             {
                 refreshTimer.Start();
@@ -300,10 +302,17 @@ namespace TwinCatTool
     public class VariableInfo
     {
         public string Name { get; set; } = "";
+
         public string DataType { get; set; } = "";
+
         public string? Value { get; set; }
+
         public int Address { get; set; }
+
         public int Size { get; set; }
+
         public string Comment { get; set; } = "";
+
+        public bool IsWritable { get; set; }
     }
 }
