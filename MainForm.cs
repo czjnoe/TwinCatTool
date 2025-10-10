@@ -1,8 +1,10 @@
+using MiniExcelLibs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -101,7 +103,7 @@ namespace TwinCatTool
                 if (btnConnect != null) btnConnect.Enabled = true;
                 if (btnDisconnect != null) btnDisconnect.Enabled = false;
                 if (btnRefresh != null) btnRefresh.Enabled = false;
-                
+
                 if (lblStatus != null)
                 {
                     lblStatus.Text = "已断开";
@@ -192,18 +194,8 @@ namespace TwinCatTool
             }
         }
 
-        private List<VariableInfo> GetCurrentDisplayedVariables()
-        {
-            if (variableManager != null && txtSearch != null)
-            {
-                return variableManager.SearchVariables(allVariables, txtSearch.Text);
-            }
-            return new List<VariableInfo>();
-        }
-
         private void OnAdsNotification(object? sender, AdsNotificationEventArgs e)
         {
-            // 处理变量值变化通知
             if (InvokeRequired)
             {
                 Invoke(new Action(() => OnAdsNotification(sender, e)));
@@ -219,22 +211,23 @@ namespace TwinCatTool
             }
             base.OnFormClosing(e);
         }
-    }
 
-    public class VariableInfo
-    {
-        public string Name { get; set; } = "";
-
-        public string DataType { get; set; } = "";
-
-        public string? Value { get; set; }
-
-        public int Address { get; set; }
-
-        public int Size { get; set; }
-
-        public string Comment { get; set; } = "";
-
-        public bool IsWritable { get; set; }
+        private void btnCheckVariable_Click(object sender, EventArgs e)
+        {
+            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "选择Excel文件";
+            openFileDialog.Filter = "Excel文件(*.xls,*.xlsx)|*.xls;*.xlsx";
+            openFileDialog.Multiselect = false;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialog.FileName;
+                var rows = MiniExcel.Query<ExportVariableInfo>(filePath);
+                var queryNames = rows.Select(s => s.DeviceName).ToList();
+                var allVariableNames = allVariables.Select(s => s.Name).ToList();
+                var data = queryNames.Except(allVariableNames).ToList();
+                if (data.Any())
+                    MessageBox.Show($"以下变量不存在：{string.Join("、", data)}");
+            }
+        }
     }
 }

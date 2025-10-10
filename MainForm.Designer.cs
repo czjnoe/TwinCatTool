@@ -34,6 +34,7 @@ namespace TwinCatTool
         private void InitializeComponent()
         {
             connectionPanel = new Panel();
+            btnCheckVariable = new Button();
             lblAmsNetId = new Label();
             txtAmsNetId = new TextBox();
             lblPort = new Label();
@@ -55,6 +56,7 @@ namespace TwinCatTool
             // connectionPanel
             // 
             connectionPanel.BorderStyle = BorderStyle.FixedSingle;
+            connectionPanel.Controls.Add(btnCheckVariable);
             connectionPanel.Controls.Add(lblAmsNetId);
             connectionPanel.Controls.Add(txtAmsNetId);
             connectionPanel.Controls.Add(lblPort);
@@ -68,6 +70,16 @@ namespace TwinCatTool
             connectionPanel.Name = "connectionPanel";
             connectionPanel.Size = new Size(875, 102);
             connectionPanel.TabIndex = 0;
+            // 
+            // btnCheckVariable
+            // 
+            btnCheckVariable.Location = new Point(584, 8);
+            btnCheckVariable.Name = "btnCheckVariable";
+            btnCheckVariable.Size = new Size(70, 26);
+            btnCheckVariable.TabIndex = 10;
+            btnCheckVariable.Text = "检查变量";
+            btnCheckVariable.UseVisualStyleBackColor = true;
+            btnCheckVariable.Click += btnCheckVariable_Click;
             // 
             // lblAmsNetId
             // 
@@ -230,5 +242,6 @@ namespace TwinCatTool
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Panel listPanel;
         private System.Windows.Forms.ListView listViewVariables;
+        private Button btnCheckVariable;
     }
 }

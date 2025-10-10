@@ -11,6 +11,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Config\导入模板.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Config\导入模板.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Beckhoff.TwinCAT.Ads" Version="6.2.511" />
     <PackageReference Include="Beckhoff.TwinCAT.Ads.Abstractions" Version="6.2.511" />
     <PackageReference Include="Beckhoff.TwinCAT.Ads.ConfigurationProviders" Version="6.2.511" />
@@ -18,6 +28,7 @@
     <PackageReference Include="Beckhoff.TwinCAT.Ads.Server" Version="6.2.511" />
     <PackageReference Include="Beckhoff.TwinCAT.Ads.SymbolicServer" Version="6.2.511" />
     <PackageReference Include="Beckhoff.TwinCAT.Ads.TcpRouter" Version="6.2.511" />
+    <PackageReference Include="MiniExcel" Version="1.41.4" />
   </ItemGroup>
 
 </Project>
