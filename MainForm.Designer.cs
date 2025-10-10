@@ -41,7 +41,6 @@ namespace TwinCatTool
             btnConnect = new Button();
             btnDisconnect = new Button();
             btnRefresh = new Button();
-            chkAutoRefresh = new CheckBox();
             lblStatus = new Label();
             searchPanel = new Panel();
             lblSearch = new Label();
@@ -63,7 +62,6 @@ namespace TwinCatTool
             connectionPanel.Controls.Add(btnConnect);
             connectionPanel.Controls.Add(btnDisconnect);
             connectionPanel.Controls.Add(btnRefresh);
-            connectionPanel.Controls.Add(chkAutoRefresh);
             connectionPanel.Controls.Add(lblStatus);
             connectionPanel.Dock = DockStyle.Top;
             connectionPanel.Location = new Point(0, 0);
@@ -136,18 +134,6 @@ namespace TwinCatTool
             btnRefresh.Text = "刷新变量";
             btnRefresh.UseVisualStyleBackColor = true;
             btnRefresh.Click += BtnRefresh_Click;
-            // 
-            // chkAutoRefresh
-            // 
-            chkAutoRefresh.AutoSize = true;
-            chkAutoRefresh.Enabled = false;
-            chkAutoRefresh.Location = new Point(595, 13);
-            chkAutoRefresh.Name = "chkAutoRefresh";
-            chkAutoRefresh.Size = new Size(75, 21);
-            chkAutoRefresh.TabIndex = 7;
-            chkAutoRefresh.Text = "自动刷新";
-            chkAutoRefresh.UseVisualStyleBackColor = true;
-            chkAutoRefresh.CheckedChanged += ChkAutoRefresh_CheckedChanged;
             // 
             // lblStatus
             // 
@@ -238,7 +224,6 @@ namespace TwinCatTool
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnDisconnect;
         private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.CheckBox chkAutoRefresh;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Panel searchPanel;
         private System.Windows.Forms.Label lblSearch;

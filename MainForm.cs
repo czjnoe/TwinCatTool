@@ -19,7 +19,6 @@ namespace TwinCatTool
         private VariableManager? variableManager;
         private bool isConnected = false;
         private List<VariableInfo> allVariables = new List<VariableInfo>();
-        private System.Windows.Forms.Timer? refreshTimer;
 
         public MainForm()
         {
@@ -32,10 +31,6 @@ namespace TwinCatTool
         {
             adsClient = new AdsClient();
             adsClient.AdsNotification += OnAdsNotification;
-
-            refreshTimer = new System.Windows.Forms.Timer();
-            refreshTimer.Interval = 1000; // 1秒刷新一次
-            refreshTimer.Tick += RefreshTimer_Tick;
         }
 
         private void InitializeListView()
@@ -72,7 +67,6 @@ namespace TwinCatTool
                 if (btnConnect != null) btnConnect.Enabled = false;
                 if (btnDisconnect != null) btnDisconnect.Enabled = true;
                 if (btnRefresh != null) btnRefresh.Enabled = true;
-                if (chkAutoRefresh != null) chkAutoRefresh.Enabled = true;
                 if (lblStatus != null)
                 {
                     lblStatus.Text = "已连接";
@@ -107,17 +101,12 @@ namespace TwinCatTool
                 if (btnConnect != null) btnConnect.Enabled = true;
                 if (btnDisconnect != null) btnDisconnect.Enabled = false;
                 if (btnRefresh != null) btnRefresh.Enabled = false;
-                if (chkAutoRefresh != null)
-                {
-                    chkAutoRefresh.Enabled = false;
-                    chkAutoRefresh.Checked = false;
-                }
+                
                 if (lblStatus != null)
                 {
                     lblStatus.Text = "已断开";
                     lblStatus.ForeColor = Color.Red;
                 }
-                if (refreshTimer != null) refreshTimer.Stop();
 
                 allVariables.Clear();
                 if (listViewVariables != null) listViewVariables.Items.Clear();
@@ -203,30 +192,6 @@ namespace TwinCatTool
             }
         }
 
-        private async void RefreshTimer_Tick(object? sender, EventArgs e)
-        {
-            if (!isConnected || variableReader == null) return;
-            try
-            {
-                // 只刷新当前显示的变量值
-                var currentVariables = GetCurrentDisplayedVariables();
-                await variableReader.ReadMultipleVariablesAsync(currentVariables);
-
-                // 更新显示
-                var searchText = txtSearch.Text.ToLower();
-                var filteredVariables = allVariables.Where(v =>
-                    v.Name.ToLower().Contains(searchText) ||
-                    v.Comment.ToLower().Contains(searchText)).ToList();
-
-                DisplayVariables(filteredVariables);
-            }
-            catch (Exception ex)
-            {
-                // 静默处理错误，避免影响UI
-                Console.WriteLine($"自动刷新错误: {ex.Message}");
-            }
-        }
-
         private List<VariableInfo> GetCurrentDisplayedVariables()
         {
             if (variableManager != null && txtSearch != null)
@@ -234,20 +199,6 @@ namespace TwinCatTool
                 return variableManager.SearchVariables(allVariables, txtSearch.Text);
             }
             return new List<VariableInfo>();
-        }
-
-        private void ChkAutoRefresh_CheckedChanged(object? sender, EventArgs e)
-        {
-            if (refreshTimer == null) return;
-
-            if (chkAutoRefresh?.Checked == true)
-            {
-                refreshTimer.Start();
-            }
-            else
-            {
-                refreshTimer.Stop();
-            }
         }
 
         private void OnAdsNotification(object? sender, AdsNotificationEventArgs e)
@@ -262,12 +213,6 @@ namespace TwinCatTool
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (refreshTimer != null)
-            {
-                refreshTimer.Stop();
-                refreshTimer.Dispose();
-            }
-
             if (adsClient != null)
             {
                 adsClient.Dispose();
