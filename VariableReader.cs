@@ -18,13 +18,12 @@ namespace TwinCatTool
         {
             try
             {
-                // 规范化类型名（去掉参数，如 STRING(80) -> string）
                 var normalized = (dataType ?? string.Empty).Trim().ToLowerInvariant();
                 var parenIndex = normalized.IndexOf('(');
                 if (parenIndex > 0)
                     normalized = normalized.Substring(0, parenIndex);
 
-                // 使用基本的读取方法，覆盖常见的 TwinCAT PLC 类型名
+                // 常见的 TwinCAT PLC 类型名
                 switch (normalized)
                 {
                     case "bool":
@@ -107,21 +106,6 @@ namespace TwinCatTool
                 variable.Value = await ReadVariableValueAsync(variable.Name, variable.DataType);
             }
             return variables;
-        }
-
-        // 简化版本，暂时不实现通知功能
-        public void SubscribeToVariable(string variableName, Action<string> valueChangedCallback)
-        {
-        }
-
-        public void UnsubscribeFromVariable(string variableName)
-        {
-           
-        }
-
-        public void UnsubscribeAll()
-        {
-            
         }
     }
 }

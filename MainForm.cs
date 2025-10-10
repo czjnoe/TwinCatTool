@@ -122,12 +122,6 @@ namespace TwinCatTool
                 // 停止自动刷新
                 if (refreshTimer != null) refreshTimer.Stop();
 
-                // 取消所有变量订阅
-                if (variableReader != null)
-                {
-                    variableReader.UnsubscribeAll();
-                }
-
                 // 清空变量列表
                 allVariables.Clear();
                 if (listViewVariables != null) listViewVariables.Items.Clear();
@@ -284,11 +278,6 @@ namespace TwinCatTool
             {
                 refreshTimer.Stop();
                 refreshTimer.Dispose();
-            }
-
-            if (variableReader != null)
-            {
-                variableReader.UnsubscribeAll();
             }
 
             if (adsClient != null)
