@@ -41,13 +41,12 @@ namespace TwinCatTool
 
         private void InitializeListView()
         {
-            // 添加ListView列
-            listViewVariables.Columns.Add("变量名", 200);
-            listViewVariables.Columns.Add("数据类型", 100);
-            listViewVariables.Columns.Add("值", 150);
+            listViewVariables.Columns.Add("变量名", 300);
+            listViewVariables.Columns.Add("数据类型", 150);
+            listViewVariables.Columns.Add("值", 300);
             listViewVariables.Columns.Add("地址", 80);
             listViewVariables.Columns.Add("大小", 60);
-            listViewVariables.Columns.Add("注释", 200);
+            listViewVariables.Columns.Add("注释", 300);
         }
 
         private async void BtnConnect_Click(object sender, EventArgs e)

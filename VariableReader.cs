@@ -98,18 +98,14 @@ namespace TwinCatTool
 
         public async Task<List<VariableInfo>> ReadMultipleVariablesAsync(List<VariableInfo> variables)
         {
-            var tasks = new List<Task>();
-
             foreach (var variable in variables)
             {
-                var task = Task.Run(async () =>
-                {
-                    variable.Value = await ReadVariableValueAsync(variable.Name, variable.DataType);
-                });
-                tasks.Add(task);
+                //var task = Task.Run(async () =>
+                //{
+                //    variable.Value = await ReadVariableValueAsync(variable.Name, variable.DataType);
+                //});
+                variable.Value = await ReadVariableValueAsync(variable.Name, variable.DataType);
             }
-
-            await Task.WhenAll(tasks);
             return variables;
         }
 
