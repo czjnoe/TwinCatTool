@@ -23,17 +23,14 @@ namespace TwinCatTool
         public List<VariableInfo> GetVariables()
         {
             var variables = new List<VariableInfo>();
-
             try
             {
                 variables.AddRange(GetAllVariables());
             }
             catch (Exception ex)
             {
-                variables.AddRange(GetAllVariables());
                 Console.WriteLine($"获取符号信息失败: {ex.Message}");
             }
-
             return variables;
         }
 
