@@ -97,6 +97,7 @@ namespace TwinCatTool
             txtAmsNetId.Size = new Size(132, 23);
             txtAmsNetId.TabIndex = 1;
             txtAmsNetId.Text = "192.168.1.10.1.1";
+            txtAmsNetId.MouseLeave += txtAmsNetId_MouseLeave;
             // 
             // lblPort
             // 
@@ -114,6 +115,7 @@ namespace TwinCatTool
             txtPort.Size = new Size(53, 23);
             txtPort.TabIndex = 3;
             txtPort.Text = "851";
+            txtPort.MouseLeave += txtPort_MouseLeave;
             // 
             // btnConnect
             // 

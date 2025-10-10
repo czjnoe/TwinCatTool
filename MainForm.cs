@@ -31,6 +31,8 @@ namespace TwinCatTool
 
         private void InitializeAdsClient()
         {
+            txtAmsNetId.Text = AppConfigHelper.GetSetting<string>("TwinCAT:AmsNetId");
+            txtPort.Text = AppConfigHelper.GetSetting<string>("TwinCAT:Port");
             adsClient = new AdsClient();
             adsClient.AdsNotification += OnAdsNotification;
         }
@@ -228,6 +230,16 @@ namespace TwinCatTool
                 if (data.Any())
                     MessageBox.Show($"以下变量不存在：{string.Join("、", data)}");
             }
+        }
+
+        private void txtAmsNetId_MouseLeave(object sender, EventArgs e)
+        {
+            AppConfigHelper.UpdateSetting("TwinCAT:AmsNetId", txtAmsNetId.Text.Trim());
+        }
+
+        private void txtPort_MouseLeave(object sender, EventArgs e)
+        {
+            AppConfigHelper.UpdateSetting("TwinCAT:Port", txtPort.Text.Trim());
         }
     }
 }

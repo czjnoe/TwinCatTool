@@ -11,10 +11,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.json" />
     <None Remove="Config\导入模板.xlsx" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Config\导入模板.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -28,6 +32,9 @@
     <PackageReference Include="Beckhoff.TwinCAT.Ads.Server" Version="6.2.511" />
     <PackageReference Include="Beckhoff.TwinCAT.Ads.SymbolicServer" Version="6.2.511" />
     <PackageReference Include="Beckhoff.TwinCAT.Ads.TcpRouter" Version="6.2.511" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.1" />
     <PackageReference Include="MiniExcel" Version="1.41.4" />
   </ItemGroup>
 
