@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -276,6 +277,34 @@ namespace TwinCatTool
                     var value = variableReader.ReadVariableValue(selectItem.SubItems[0].Text, selectItem.SubItems[1].Text);
                     txtVariableValue.Text = value;
                     selectItem.SubItems[2].Text = value;
+                }
+            }
+        }
+
+        private void btnExportTemp_Click(object sender, EventArgs e)
+        {
+            string sourceFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config\\导入模板.xlsx");
+            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
+            {
+                folderBrowserDialog.Description = "请选择保存目录";
+                folderBrowserDialog.RootFolder = Environment.SpecialFolder.Desktop;
+                folderBrowserDialog.ShowNewFolderButton = true;
+
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedPath = folderBrowserDialog.SelectedPath;
+                    string destFileName = Path.Combine(selectedPath, Path.GetFileName(sourceFileName));
+                    try
+                    {
+                        File.Copy(sourceFileName, destFileName);
+                        MessageBox.Show("文件导出成功！", "提示",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"导出失败：{ex.Message}", "错误",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

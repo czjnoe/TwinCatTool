@@ -34,6 +34,7 @@ namespace TwinCatTool
         private void InitializeComponent()
         {
             connectionPanel = new Panel();
+            btnExportTemp = new Button();
             btnCheckVariable = new Button();
             lblAmsNetId = new Label();
             txtAmsNetId = new TextBox();
@@ -63,6 +64,7 @@ namespace TwinCatTool
             // connectionPanel
             // 
             connectionPanel.BorderStyle = BorderStyle.FixedSingle;
+            connectionPanel.Controls.Add(btnExportTemp);
             connectionPanel.Controls.Add(btnCheckVariable);
             connectionPanel.Controls.Add(lblAmsNetId);
             connectionPanel.Controls.Add(txtAmsNetId);
@@ -78,13 +80,23 @@ namespace TwinCatTool
             connectionPanel.Size = new Size(1202, 82);
             connectionPanel.TabIndex = 0;
             // 
+            // btnExportTemp
+            // 
+            btnExportTemp.Location = new Point(735, 10);
+            btnExportTemp.Name = "btnExportTemp";
+            btnExportTemp.Size = new Size(113, 23);
+            btnExportTemp.TabIndex = 11;
+            btnExportTemp.Text = "检查文件Export";
+            btnExportTemp.UseVisualStyleBackColor = true;
+            btnExportTemp.Click += btnExportTemp_Click;
+            // 
             // btnCheckVariable
             // 
             btnCheckVariable.Location = new Point(623, 7);
             btnCheckVariable.Name = "btnCheckVariable";
-            btnCheckVariable.Size = new Size(70, 26);
+            btnCheckVariable.Size = new Size(106, 26);
             btnCheckVariable.TabIndex = 10;
-            btnCheckVariable.Text = "检查变量";
+            btnCheckVariable.Text = "检查变量Import";
             btnCheckVariable.UseVisualStyleBackColor = true;
             btnCheckVariable.Click += btnCheckVariable_Click;
             // 
@@ -329,5 +341,6 @@ namespace TwinCatTool
         private TextBox txtVariableName;
         private Label label3;
         private Button btnVariableRead;
+        private Button btnExportTemp;
     }
 }
