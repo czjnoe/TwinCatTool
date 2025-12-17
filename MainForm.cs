@@ -78,7 +78,7 @@ namespace TwinCatTool
                 }
 
                 // 自动刷新变量列表
-                await RefreshVariables();
+                await RefreshVariables(false);
             }
             catch (Exception ex)
             {
@@ -126,7 +126,7 @@ namespace TwinCatTool
             await RefreshVariables();
         }
 
-        private async Task RefreshVariables()
+        private async Task RefreshVariables(bool readVariable = true)
         {
             if (!isConnected || adsClient == null) return;
             try
@@ -144,7 +144,7 @@ namespace TwinCatTool
                 }
 
                 // 先读取当前变量的最新值
-                if (variableReader != null)
+                if (variableReader != null && readVariable)
                 {
                     await variableReader.ReadMultipleVariablesAsync(allVariables);
 
@@ -240,6 +240,44 @@ namespace TwinCatTool
         private void txtPort_MouseLeave(object sender, EventArgs e)
         {
             AppConfigHelper.UpdateSetting("TwinCAT:Port", txtPort.Text.Trim());
+        }
+
+        private void btnVariableWrite_Click(object sender, EventArgs e)
+        {
+            if (listViewVariables.SelectedItems.Count < 1)
+            {
+                MessageBox.Show($"没有选择变量", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var dialog = MessageBox.Show("确认写入？", "确认", MessageBoxButtons.OK);
+            if (dialog == DialogResult.OK)
+            {
+                variableManager.WriteVariable(txtVariableName.Text, txtVariableValue.Text);
+            }
+        }
+
+        private void listViewVariables_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewVariables.SelectedItems.Count > 0)
+            {
+                var selectItem = listViewVariables.SelectedItems[0];
+                txtVariableName.Text = selectItem.SubItems[0].Text;
+                txtVariableValue.Text = selectItem.SubItems[2].Text;
+            }
+        }
+
+        private void btnVariableRead_Click(object sender, EventArgs e)
+        {
+            if (listViewVariables.SelectedItems.Count > 0)
+            {
+                var selectItem = listViewVariables.SelectedItems[0];
+                if (variableReader != null)
+                {
+                    var value = variableReader.ReadVariableValue(selectItem.SubItems[0].Text, selectItem.SubItems[1].Text);
+                    txtVariableValue.Text = value;
+                    selectItem.SubItems[2].Text = value;
+                }
+            }
         }
     }
 }

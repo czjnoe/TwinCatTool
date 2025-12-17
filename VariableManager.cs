@@ -39,9 +39,10 @@ namespace TwinCatTool
             var variables = new List<VariableInfo>();
             try
             {
-                var settings = new TwinCAT.SymbolLoaderSettings(SymbolsLoadMode.Flat);// 使用 TwinCAT 符号加载器从 PLC 读取变量
+                var settings = new TwinCAT.SymbolLoaderSettings(SymbolsLoadMode.Flat);
                 var loader = TwinCAT.Ads.TypeSystem.SymbolLoaderFactory.Create(adsClient, settings);
-                foreach (TwinCAT.Ads.TypeSystem.Symbol symbol in loader.Symbols)
+
+                foreach (Symbol symbol in loader.Symbols)
                 {
                     bool isWritable = (symbol.Flags & AdsSymbolFlags.Persistent) != 0;
                     var dataTypeName = symbol.DataType != null ? symbol.DataType.Name : symbol.TypeName;
@@ -76,6 +77,206 @@ namespace TwinCatTool
             return allVariables.Where(v =>
                 v.Name.ToLower().Contains(lowerSearchText) ||
                 v.Comment.ToLower().Contains(lowerSearchText)).ToList();
+        }
+
+        /// <summary>
+        /// 写入变量值（自动类型转换）
+        /// </summary>
+        /// <param name="variableName">变量名称</param>
+        /// <param name="value">要写入的值</param>
+        /// <returns>写入是否成功</returns>
+        public bool WriteVariable(string variableName, object value)
+        {
+            try
+            {
+                var settings = new TwinCAT.SymbolLoaderSettings(SymbolsLoadMode.Flat);
+                var loader = TwinCAT.Ads.TypeSystem.SymbolLoaderFactory.Create(adsClient, settings);
+                var symbol = loader.Symbols[variableName] as Symbol;
+
+                if (symbol == null)
+                {
+                    Console.WriteLine($"变量 '{variableName}' 不存在");
+                    return false;
+                }
+
+                // 检查变量是否可写
+                if ((symbol.Flags & AdsSymbolFlags.Persistent) != 0)
+                {
+                    Console.WriteLine($"变量 '{variableName}' 是只读的，无法写入");
+                    return false;
+                }
+
+                // 根据数据类型转换并写入
+                var dataTypeName = symbol.DataType != null ? symbol.DataType.Name : symbol.TypeName;
+                object convertedValue = ConvertValue(value, dataTypeName);
+
+                // 使用WriteValue方法写入
+                adsClient.WriteValue(symbol, convertedValue);
+                Console.WriteLine($"成功写入变量 '{variableName}' = {convertedValue}");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"写入变量失败: {ex.Message}");
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 批量写入变量
+        /// </summary>
+        public Dictionary<string, bool> WriteVariables(Dictionary<string, object> variables)
+        {
+            var results = new Dictionary<string, bool>();
+
+            foreach (var kvp in variables)
+            {
+                results[kvp.Key] = WriteVariable(kvp.Key, kvp.Value);
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// 异步写入变量
+        /// </summary>
+        public async Task<bool> WriteVariableAsync(string variableName, object value)
+        {
+            return await Task.Run(() => WriteVariable(variableName, value));
+        }
+
+        /// <summary>
+        /// 根据PLC数据类型转换值
+        /// </summary>
+        private object ConvertValue(object value, string dataTypeName)
+        {
+            if (value == null)
+                throw new ArgumentNullException(nameof(value));
+
+            string normalizedType = dataTypeName.ToUpper();
+
+            try
+            {
+                switch (normalizedType)
+                {
+                    // 布尔类型
+                    case "BOOL":
+                        return Convert.ToBoolean(value);
+
+                    // 整数类型
+                    case "BYTE":
+                    case "USINT":
+                        return Convert.ToByte(value);
+
+                    case "SINT":
+                        return Convert.ToSByte(value);
+
+                    case "WORD":
+                    case "UINT":
+                        return Convert.ToUInt16(value);
+
+                    case "INT":
+                        return Convert.ToInt16(value);
+
+                    case "DWORD":
+                    case "UDINT":
+                        return Convert.ToUInt32(value);
+
+                    case "DINT":
+                        return Convert.ToInt32(value);
+
+                    case "LWORD":
+                    case "ULINT":
+                        return Convert.ToUInt64(value);
+
+                    case "LINT":
+                        return Convert.ToInt64(value);
+
+                    // 浮点类型
+                    case "REAL":
+                        return Convert.ToSingle(value);
+
+                    case "LREAL":
+                        return Convert.ToDouble(value);
+
+                    // 字符串类型
+                    case "STRING":
+                    case "WSTRING":
+                        return value.ToString();
+
+                    // 时间类型
+                    case "TIME":
+                    case "TIME_OF_DAY":
+                    case "TOD":
+                    case "DATE":
+                    case "DATE_AND_TIME":
+                    case "DT":
+                        if (value is TimeSpan)
+                            return value;
+                        if (value is DateTime dt)
+                            return dt.TimeOfDay;
+                        return TimeSpan.Parse(value.ToString());
+
+                    // 默认返回原值
+                    default:
+                        Console.WriteLine($"警告: 未识别的数据类型 '{dataTypeName}'，尝试直接写入原值");
+                        return value;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidCastException($"无法将值 '{value}' 转换为类型 '{dataTypeName}': {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// 读取变量值
+        /// </summary>
+        public T ReadVariable<T>(string variableName)
+        {
+            try
+            {
+                var settings = new TwinCAT.SymbolLoaderSettings(SymbolsLoadMode.Flat);
+                var loader = TwinCAT.Ads.TypeSystem.SymbolLoaderFactory.Create(adsClient, settings);
+                var symbol = loader.Symbols[variableName];
+
+                if (symbol == null)
+                {
+                    throw new Exception($"变量 '{variableName}' 不存在");
+                }
+
+                return (T)adsClient.ReadValue(symbol);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"读取变量失败: {ex.Message}");
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 读取变量值（动态类型）
+        /// </summary>
+        public object ReadVariable(string variableName)
+        {
+            try
+            {
+                var settings = new TwinCAT.SymbolLoaderSettings(SymbolsLoadMode.Flat);
+                var loader = TwinCAT.Ads.TypeSystem.SymbolLoaderFactory.Create(adsClient, settings);
+                var symbol = loader.Symbols[variableName];
+
+                if (symbol == null)
+                {
+                    throw new Exception($"变量 '{variableName}' 不存在");
+                }
+
+                return adsClient.ReadValue(symbol);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"读取变量失败: {ex.Message}");
+                throw;
+            }
         }
     }
 }

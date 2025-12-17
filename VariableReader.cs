@@ -14,7 +14,7 @@ namespace TwinCatTool
             this.adsClient = adsClient;
         }
 
-        public async Task<string> ReadVariableValueAsync(string variableName, string dataType)
+        public string ReadVariableValue(string variableName, string dataType)
         {
             try
             {
@@ -103,7 +103,7 @@ namespace TwinCatTool
                 //{
                 //    variable.Value = await ReadVariableValueAsync(variable.Name, variable.DataType);
                 //});
-                variable.Value = await ReadVariableValueAsync(variable.Name, variable.DataType);
+                variable.Value = ReadVariableValue(variable.Name, variable.DataType);
             }
             return variables;
         }

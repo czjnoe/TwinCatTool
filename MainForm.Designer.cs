@@ -44,6 +44,13 @@ namespace TwinCatTool
             btnRefresh = new Button();
             lblStatus = new Label();
             searchPanel = new Panel();
+            btnVariableRead = new Button();
+            label3 = new Label();
+            label2 = new Label();
+            txtVariableName = new TextBox();
+            label1 = new Label();
+            txtVariableValue = new TextBox();
+            btnVariableWrite = new Button();
             lblSearch = new Label();
             txtSearch = new TextBox();
             listPanel = new Panel();
@@ -68,12 +75,12 @@ namespace TwinCatTool
             connectionPanel.Dock = DockStyle.Top;
             connectionPanel.Location = new Point(0, 0);
             connectionPanel.Name = "connectionPanel";
-            connectionPanel.Size = new Size(875, 102);
+            connectionPanel.Size = new Size(1202, 82);
             connectionPanel.TabIndex = 0;
             // 
             // btnCheckVariable
             // 
-            btnCheckVariable.Location = new Point(584, 8);
+            btnCheckVariable.Location = new Point(656, 8);
             btnCheckVariable.Name = "btnCheckVariable";
             btnCheckVariable.Size = new Size(70, 26);
             btnCheckVariable.TabIndex = 10;
@@ -143,9 +150,9 @@ namespace TwinCatTool
             btnRefresh.Enabled = false;
             btnRefresh.Location = new Point(508, 8);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(70, 26);
+            btnRefresh.Size = new Size(109, 26);
             btnRefresh.TabIndex = 6;
-            btnRefresh.Text = "刷新变量";
+            btnRefresh.Text = "刷新全部变量";
             btnRefresh.UseVisualStyleBackColor = true;
             btnRefresh.Click += BtnRefresh_Click;
             // 
@@ -162,13 +169,82 @@ namespace TwinCatTool
             // searchPanel
             // 
             searchPanel.BorderStyle = BorderStyle.FixedSingle;
+            searchPanel.Controls.Add(btnVariableRead);
+            searchPanel.Controls.Add(label3);
+            searchPanel.Controls.Add(label2);
+            searchPanel.Controls.Add(txtVariableName);
+            searchPanel.Controls.Add(label1);
+            searchPanel.Controls.Add(txtVariableValue);
+            searchPanel.Controls.Add(btnVariableWrite);
             searchPanel.Controls.Add(lblSearch);
             searchPanel.Controls.Add(txtSearch);
             searchPanel.Dock = DockStyle.Top;
-            searchPanel.Location = new Point(0, 102);
+            searchPanel.Location = new Point(0, 82);
             searchPanel.Name = "searchPanel";
-            searchPanel.Size = new Size(875, 51);
+            searchPanel.Size = new Size(1202, 51);
             searchPanel.TabIndex = 1;
+            // 
+            // btnVariableRead
+            // 
+            btnVariableRead.Location = new Point(1085, 14);
+            btnVariableRead.Name = "btnVariableRead";
+            btnVariableRead.Size = new Size(75, 23);
+            btnVariableRead.TabIndex = 8;
+            btnVariableRead.Text = "Read";
+            btnVariableRead.UseVisualStyleBackColor = true;
+            btnVariableRead.Click += btnVariableRead_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(386, 17);
+            label3.Name = "label3";
+            label3.Size = new Size(89, 17);
+            label3.TabIndex = 7;
+            label3.Text = "Current Select";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(481, 17);
+            label2.Name = "label2";
+            label2.Size = new Size(55, 17);
+            label2.TabIndex = 6;
+            label2.Text = "Name：";
+            // 
+            // txtVariableName
+            // 
+            txtVariableName.Location = new Point(539, 14);
+            txtVariableName.Name = "txtVariableName";
+            txtVariableName.ReadOnly = true;
+            txtVariableName.Size = new Size(174, 23);
+            txtVariableName.TabIndex = 5;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(735, 17);
+            label1.Name = "label1";
+            label1.Size = new Size(52, 17);
+            label1.TabIndex = 4;
+            label1.Text = "Value：";
+            // 
+            // txtVariableValue
+            // 
+            txtVariableValue.Location = new Point(793, 14);
+            txtVariableValue.Name = "txtVariableValue";
+            txtVariableValue.Size = new Size(174, 23);
+            txtVariableValue.TabIndex = 3;
+            // 
+            // btnVariableWrite
+            // 
+            btnVariableWrite.Location = new Point(991, 14);
+            btnVariableWrite.Name = "btnVariableWrite";
+            btnVariableWrite.Size = new Size(75, 23);
+            btnVariableWrite.TabIndex = 2;
+            btnVariableWrite.Text = "Write";
+            btnVariableWrite.UseVisualStyleBackColor = true;
+            btnVariableWrite.Click += btnVariableWrite_Click;
             // 
             // lblSearch
             // 
@@ -192,9 +268,9 @@ namespace TwinCatTool
             // 
             listPanel.Controls.Add(listViewVariables);
             listPanel.Dock = DockStyle.Fill;
-            listPanel.Location = new Point(0, 153);
+            listPanel.Location = new Point(0, 133);
             listPanel.Name = "listPanel";
-            listPanel.Size = new Size(875, 442);
+            listPanel.Size = new Size(1202, 462);
             listPanel.TabIndex = 2;
             // 
             // listViewVariables
@@ -204,16 +280,17 @@ namespace TwinCatTool
             listViewVariables.GridLines = true;
             listViewVariables.Location = new Point(0, 0);
             listViewVariables.Name = "listViewVariables";
-            listViewVariables.Size = new Size(875, 442);
+            listViewVariables.Size = new Size(1202, 462);
             listViewVariables.TabIndex = 0;
             listViewVariables.UseCompatibleStateImageBehavior = false;
             listViewVariables.View = View.Details;
+            listViewVariables.SelectedIndexChanged += listViewVariables_SelectedIndexChanged;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(875, 595);
+            ClientSize = new Size(1202, 595);
             Controls.Add(listPanel);
             Controls.Add(searchPanel);
             Controls.Add(connectionPanel);
@@ -245,5 +322,12 @@ namespace TwinCatTool
         private System.Windows.Forms.Panel listPanel;
         private System.Windows.Forms.ListView listViewVariables;
         private Button btnCheckVariable;
+        private TextBox txtVariableValue;
+        private Button btnVariableWrite;
+        private Label label1;
+        private Label label2;
+        private TextBox txtVariableName;
+        private Label label3;
+        private Button btnVariableRead;
     }
 }
