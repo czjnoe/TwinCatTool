@@ -21,5 +21,9 @@ namespace TwinCatTool
         public string Comment { get; set; } = "";
 
         public bool IsWritable { get; set; }
+
+        public uint IndexOffset { get; set; }
+
+        public uint IndexGroup { get; set; }
     }
 }

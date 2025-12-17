@@ -49,7 +49,7 @@ namespace TwinCatTool
                     var size = symbol.Size;
                     var comment = symbol.Comment ?? string.Empty;
                     var name = symbol.InstancePath;
-
+                    
                     variables.Add(new VariableInfo
                     {
                         Name = name,
@@ -58,6 +58,8 @@ namespace TwinCatTool
                         Size = size,
                         Comment = comment,
                         IsWritable = !isWritable,
+                        IndexGroup = symbol.IndexGroup,
+                        IndexOffset = symbol.IndexOffset,
                     });
                 }
             }

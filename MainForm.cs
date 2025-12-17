@@ -42,10 +42,12 @@ namespace TwinCatTool
         {
             listViewVariables.Columns.Add("变量名", 300);
             listViewVariables.Columns.Add("数据类型", 150);
-            listViewVariables.Columns.Add("值", 300);
+            listViewVariables.Columns.Add("当前值", 300);
             listViewVariables.Columns.Add("可写", 80);
             listViewVariables.Columns.Add("地址", 80);
             listViewVariables.Columns.Add("大小", 60);
+            listViewVariables.Columns.Add("IndexGroup", 100);
+            listViewVariables.Columns.Add("IndexOffset", 100);
             listViewVariables.Columns.Add("注释", 300);
         }
 
@@ -191,6 +193,8 @@ namespace TwinCatTool
                 item.SubItems.Add(variable.IsWritable.ToString());
                 item.SubItems.Add($"0x{variable.Address:X}");
                 item.SubItems.Add(variable.Size.ToString());
+                item.SubItems.Add(variable.IndexGroup.ToString());
+                item.SubItems.Add(variable.IndexOffset.ToString());
                 item.SubItems.Add(variable.Comment);
 
                 listViewVariables.Items.Add(item);
