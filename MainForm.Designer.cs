@@ -80,7 +80,7 @@ namespace TwinCatTool
             // 
             // btnCheckVariable
             // 
-            btnCheckVariable.Location = new Point(656, 8);
+            btnCheckVariable.Location = new Point(623, 7);
             btnCheckVariable.Name = "btnCheckVariable";
             btnCheckVariable.Size = new Size(70, 26);
             btnCheckVariable.TabIndex = 10;
