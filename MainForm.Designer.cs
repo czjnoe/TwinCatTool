@@ -1,4 +1,4 @@
-#nullable disable
+﻿#nullable disable
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -76,15 +76,17 @@ namespace TwinCatTool
             connectionPanel.Controls.Add(lblStatus);
             connectionPanel.Dock = DockStyle.Top;
             connectionPanel.Location = new Point(0, 0);
+            connectionPanel.Margin = new Padding(4, 4, 4, 4);
             connectionPanel.Name = "connectionPanel";
-            connectionPanel.Size = new Size(1202, 82);
+            connectionPanel.Size = new Size(1545, 96);
             connectionPanel.TabIndex = 0;
             // 
             // btnExportTemp
             // 
-            btnExportTemp.Location = new Point(735, 10);
+            btnExportTemp.Location = new Point(945, 8);
+            btnExportTemp.Margin = new Padding(4, 4, 4, 4);
             btnExportTemp.Name = "btnExportTemp";
-            btnExportTemp.Size = new Size(113, 23);
+            btnExportTemp.Size = new Size(145, 31);
             btnExportTemp.TabIndex = 11;
             btnExportTemp.Text = "检查文件Export";
             btnExportTemp.UseVisualStyleBackColor = true;
@@ -92,9 +94,10 @@ namespace TwinCatTool
             // 
             // btnCheckVariable
             // 
-            btnCheckVariable.Location = new Point(623, 7);
+            btnCheckVariable.Location = new Point(801, 8);
+            btnCheckVariable.Margin = new Padding(4, 4, 4, 4);
             btnCheckVariable.Name = "btnCheckVariable";
-            btnCheckVariable.Size = new Size(106, 26);
+            btnCheckVariable.Size = new Size(136, 31);
             btnCheckVariable.TabIndex = 10;
             btnCheckVariable.Text = "检查变量Import";
             btnCheckVariable.UseVisualStyleBackColor = true;
@@ -103,17 +106,19 @@ namespace TwinCatTool
             // lblAmsNetId
             // 
             lblAmsNetId.AutoSize = true;
-            lblAmsNetId.Location = new Point(9, 13);
+            lblAmsNetId.Location = new Point(12, 15);
+            lblAmsNetId.Margin = new Padding(4, 0, 4, 0);
             lblAmsNetId.Name = "lblAmsNetId";
-            lblAmsNetId.Size = new Size(80, 17);
+            lblAmsNetId.Size = new Size(98, 20);
             lblAmsNetId.TabIndex = 0;
             lblAmsNetId.Text = "AMS Net ID:";
             // 
             // txtAmsNetId
             // 
-            txtAmsNetId.Location = new Point(88, 10);
+            txtAmsNetId.Location = new Point(113, 12);
+            txtAmsNetId.Margin = new Padding(4, 4, 4, 4);
             txtAmsNetId.Name = "txtAmsNetId";
-            txtAmsNetId.Size = new Size(132, 23);
+            txtAmsNetId.Size = new Size(169, 27);
             txtAmsNetId.TabIndex = 1;
             txtAmsNetId.Text = "192.168.1.10.1.1";
             txtAmsNetId.MouseLeave += txtAmsNetId_MouseLeave;
@@ -121,26 +126,29 @@ namespace TwinCatTool
             // lblPort
             // 
             lblPort.AutoSize = true;
-            lblPort.Location = new Point(236, 13);
+            lblPort.Location = new Point(303, 15);
+            lblPort.Margin = new Padding(4, 0, 4, 0);
             lblPort.Name = "lblPort";
-            lblPort.Size = new Size(35, 17);
+            lblPort.Size = new Size(43, 20);
             lblPort.TabIndex = 2;
             lblPort.Text = "端口:";
             // 
             // txtPort
             // 
-            txtPort.Location = new Point(280, 10);
+            txtPort.Location = new Point(360, 12);
+            txtPort.Margin = new Padding(4, 4, 4, 4);
             txtPort.Name = "txtPort";
-            txtPort.Size = new Size(53, 23);
+            txtPort.Size = new Size(67, 27);
             txtPort.TabIndex = 3;
             txtPort.Text = "851";
             txtPort.MouseLeave += txtPort_MouseLeave;
             // 
             // btnConnect
             // 
-            btnConnect.Location = new Point(350, 8);
+            btnConnect.Location = new Point(450, 9);
+            btnConnect.Margin = new Padding(4, 4, 4, 4);
             btnConnect.Name = "btnConnect";
-            btnConnect.Size = new Size(70, 26);
+            btnConnect.Size = new Size(90, 31);
             btnConnect.TabIndex = 4;
             btnConnect.Text = "连接";
             btnConnect.UseVisualStyleBackColor = true;
@@ -149,9 +157,10 @@ namespace TwinCatTool
             // btnDisconnect
             // 
             btnDisconnect.Enabled = false;
-            btnDisconnect.Location = new Point(429, 8);
+            btnDisconnect.Location = new Point(552, 9);
+            btnDisconnect.Margin = new Padding(4, 4, 4, 4);
             btnDisconnect.Name = "btnDisconnect";
-            btnDisconnect.Size = new Size(70, 26);
+            btnDisconnect.Size = new Size(90, 31);
             btnDisconnect.TabIndex = 5;
             btnDisconnect.Text = "断开";
             btnDisconnect.UseVisualStyleBackColor = true;
@@ -160,9 +169,10 @@ namespace TwinCatTool
             // btnRefresh
             // 
             btnRefresh.Enabled = false;
-            btnRefresh.Location = new Point(508, 8);
+            btnRefresh.Location = new Point(653, 9);
+            btnRefresh.Margin = new Padding(4, 4, 4, 4);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(109, 26);
+            btnRefresh.Size = new Size(140, 31);
             btnRefresh.TabIndex = 6;
             btnRefresh.Text = "刷新全部变量";
             btnRefresh.UseVisualStyleBackColor = true;
@@ -172,9 +182,10 @@ namespace TwinCatTool
             // 
             lblStatus.AutoSize = true;
             lblStatus.ForeColor = Color.Red;
-            lblStatus.Location = new Point(9, 42);
+            lblStatus.Location = new Point(12, 49);
+            lblStatus.Margin = new Padding(4, 0, 4, 0);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(44, 17);
+            lblStatus.Size = new Size(54, 20);
             lblStatus.TabIndex = 9;
             lblStatus.Text = "未连接";
             // 
@@ -191,16 +202,18 @@ namespace TwinCatTool
             searchPanel.Controls.Add(lblSearch);
             searchPanel.Controls.Add(txtSearch);
             searchPanel.Dock = DockStyle.Top;
-            searchPanel.Location = new Point(0, 82);
+            searchPanel.Location = new Point(0, 96);
+            searchPanel.Margin = new Padding(4, 4, 4, 4);
             searchPanel.Name = "searchPanel";
-            searchPanel.Size = new Size(1202, 51);
+            searchPanel.Size = new Size(1545, 60);
             searchPanel.TabIndex = 1;
             // 
             // btnVariableRead
             // 
-            btnVariableRead.Location = new Point(1085, 14);
+            btnVariableRead.Location = new Point(1395, 16);
+            btnVariableRead.Margin = new Padding(4, 4, 4, 4);
             btnVariableRead.Name = "btnVariableRead";
-            btnVariableRead.Size = new Size(75, 23);
+            btnVariableRead.Size = new Size(96, 27);
             btnVariableRead.TabIndex = 8;
             btnVariableRead.Text = "Read";
             btnVariableRead.UseVisualStyleBackColor = true;
@@ -209,50 +222,56 @@ namespace TwinCatTool
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(386, 17);
+            label3.Location = new Point(496, 20);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(89, 17);
+            label3.Size = new Size(113, 20);
             label3.TabIndex = 7;
             label3.Text = "Current Select";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(481, 17);
+            label2.Location = new Point(618, 20);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(55, 17);
+            label2.Size = new Size(67, 20);
             label2.TabIndex = 6;
             label2.Text = "Name：";
             // 
             // txtVariableName
             // 
-            txtVariableName.Location = new Point(539, 14);
+            txtVariableName.Location = new Point(693, 16);
+            txtVariableName.Margin = new Padding(4, 4, 4, 4);
             txtVariableName.Name = "txtVariableName";
             txtVariableName.ReadOnly = true;
-            txtVariableName.Size = new Size(174, 23);
+            txtVariableName.Size = new Size(223, 27);
             txtVariableName.TabIndex = 5;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(735, 17);
+            label1.Location = new Point(945, 20);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(52, 17);
+            label1.Size = new Size(64, 20);
             label1.TabIndex = 4;
             label1.Text = "Value：";
             // 
             // txtVariableValue
             // 
-            txtVariableValue.Location = new Point(793, 14);
+            txtVariableValue.Location = new Point(1020, 16);
+            txtVariableValue.Margin = new Padding(4, 4, 4, 4);
             txtVariableValue.Name = "txtVariableValue";
-            txtVariableValue.Size = new Size(174, 23);
+            txtVariableValue.Size = new Size(223, 27);
             txtVariableValue.TabIndex = 3;
             // 
             // btnVariableWrite
             // 
-            btnVariableWrite.Location = new Point(991, 14);
+            btnVariableWrite.Location = new Point(1274, 16);
+            btnVariableWrite.Margin = new Padding(4, 4, 4, 4);
             btnVariableWrite.Name = "btnVariableWrite";
-            btnVariableWrite.Size = new Size(75, 23);
+            btnVariableWrite.Size = new Size(96, 27);
             btnVariableWrite.TabIndex = 2;
             btnVariableWrite.Text = "Write";
             btnVariableWrite.UseVisualStyleBackColor = true;
@@ -261,18 +280,20 @@ namespace TwinCatTool
             // lblSearch
             // 
             lblSearch.AutoSize = true;
-            lblSearch.Location = new Point(9, 17);
+            lblSearch.Location = new Point(12, 20);
+            lblSearch.Margin = new Padding(4, 0, 4, 0);
             lblSearch.Name = "lblSearch";
-            lblSearch.Size = new Size(59, 17);
+            lblSearch.Size = new Size(73, 20);
             lblSearch.TabIndex = 0;
             lblSearch.Text = "搜索变量:";
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(79, 14);
+            txtSearch.Location = new Point(102, 16);
+            txtSearch.Margin = new Padding(4, 4, 4, 4);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "输入变量名进行模糊搜索...";
-            txtSearch.Size = new Size(263, 23);
+            txtSearch.Size = new Size(337, 27);
             txtSearch.TabIndex = 1;
             txtSearch.TextChanged += TxtSearch_TextChanged;
             // 
@@ -280,9 +301,10 @@ namespace TwinCatTool
             // 
             listPanel.Controls.Add(listViewVariables);
             listPanel.Dock = DockStyle.Fill;
-            listPanel.Location = new Point(0, 133);
+            listPanel.Location = new Point(0, 156);
+            listPanel.Margin = new Padding(4, 4, 4, 4);
             listPanel.Name = "listPanel";
-            listPanel.Size = new Size(1202, 462);
+            listPanel.Size = new Size(1545, 544);
             listPanel.TabIndex = 2;
             // 
             // listViewVariables
@@ -291,8 +313,9 @@ namespace TwinCatTool
             listViewVariables.FullRowSelect = true;
             listViewVariables.GridLines = true;
             listViewVariables.Location = new Point(0, 0);
+            listViewVariables.Margin = new Padding(4, 4, 4, 4);
             listViewVariables.Name = "listViewVariables";
-            listViewVariables.Size = new Size(1202, 462);
+            listViewVariables.Size = new Size(1545, 544);
             listViewVariables.TabIndex = 0;
             listViewVariables.UseCompatibleStateImageBehavior = false;
             listViewVariables.View = View.Details;
@@ -300,12 +323,13 @@ namespace TwinCatTool
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1202, 595);
+            ClientSize = new Size(1545, 700);
             Controls.Add(listPanel);
             Controls.Add(searchPanel);
             Controls.Add(connectionPanel);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Beckhoff TwinCAT 变量查看器";
