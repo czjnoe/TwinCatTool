@@ -32,6 +32,7 @@
     <PackageReference Include="Beckhoff.TwinCAT.Ads.Server" Version="6.2.511" />
     <PackageReference Include="Beckhoff.TwinCAT.Ads.SymbolicServer" Version="6.2.511" />
     <PackageReference Include="Beckhoff.TwinCAT.Ads.TcpRouter" Version="6.2.511" />
+    <PackageReference Include="CZJ.Extension" Version="1.3.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.1" />

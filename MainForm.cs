@@ -1,4 +1,5 @@
-﻿using MiniExcelLibs;
+﻿using CZJ.Extension;
+using MiniExcelLibs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -311,6 +312,19 @@ namespace TwinCatTool
                     }
                 }
             }
+        }
+
+        private void MenuAbout_Click(object sender, EventArgs e)
+        {
+            using (var aboutForm = new AboutForm())
+            {
+                aboutForm.ShowDialog(this);
+            }
+        }
+
+        private void menuGithub_Click(object sender, EventArgs e)
+        {
+            ProcessUtil.OpenBrowserForVisitSite("https://github.com/czjnoe/TwinCatTool");
         }
     }
 }

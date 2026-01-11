@@ -33,6 +33,9 @@ namespace TwinCatTool
         /// </summary>
         private void InitializeComponent()
         {
+            menuStrip = new MenuStrip();
+            menuHelp = new ToolStripMenuItem();
+            menuAbout = new ToolStripMenuItem();
             connectionPanel = new Panel();
             btnExportTemp = new Button();
             btnCheckVariable = new Button();
@@ -56,10 +59,37 @@ namespace TwinCatTool
             txtSearch = new TextBox();
             listPanel = new Panel();
             listViewVariables = new ListView();
+            menuGithub = new ToolStripMenuItem();
+            menuStrip.SuspendLayout();
             connectionPanel.SuspendLayout();
             searchPanel.SuspendLayout();
             listPanel.SuspendLayout();
             SuspendLayout();
+            // 
+            // menuStrip
+            // 
+            menuStrip.ImageScalingSize = new Size(20, 20);
+            menuStrip.Items.AddRange(new ToolStripItem[] { menuHelp });
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Padding = new Padding(7, 3, 0, 3);
+            menuStrip.Size = new Size(1545, 30);
+            menuStrip.TabIndex = 3;
+            menuStrip.Text = "menuStrip";
+            // 
+            // menuHelp
+            // 
+            menuHelp.DropDownItems.AddRange(new ToolStripItem[] { menuGithub, menuAbout });
+            menuHelp.Name = "menuHelp";
+            menuHelp.Size = new Size(53, 24);
+            menuHelp.Text = "帮助";
+            // 
+            // menuAbout
+            // 
+            menuAbout.Name = "menuAbout";
+            menuAbout.Size = new Size(224, 26);
+            menuAbout.Text = "关于";
+            menuAbout.Click += MenuAbout_Click;
             // 
             // connectionPanel
             // 
@@ -75,8 +105,8 @@ namespace TwinCatTool
             connectionPanel.Controls.Add(btnRefresh);
             connectionPanel.Controls.Add(lblStatus);
             connectionPanel.Dock = DockStyle.Top;
-            connectionPanel.Location = new Point(0, 0);
-            connectionPanel.Margin = new Padding(4, 4, 4, 4);
+            connectionPanel.Location = new Point(0, 30);
+            connectionPanel.Margin = new Padding(4);
             connectionPanel.Name = "connectionPanel";
             connectionPanel.Size = new Size(1545, 96);
             connectionPanel.TabIndex = 0;
@@ -84,7 +114,7 @@ namespace TwinCatTool
             // btnExportTemp
             // 
             btnExportTemp.Location = new Point(945, 8);
-            btnExportTemp.Margin = new Padding(4, 4, 4, 4);
+            btnExportTemp.Margin = new Padding(4);
             btnExportTemp.Name = "btnExportTemp";
             btnExportTemp.Size = new Size(145, 31);
             btnExportTemp.TabIndex = 11;
@@ -95,7 +125,7 @@ namespace TwinCatTool
             // btnCheckVariable
             // 
             btnCheckVariable.Location = new Point(801, 8);
-            btnCheckVariable.Margin = new Padding(4, 4, 4, 4);
+            btnCheckVariable.Margin = new Padding(4);
             btnCheckVariable.Name = "btnCheckVariable";
             btnCheckVariable.Size = new Size(136, 31);
             btnCheckVariable.TabIndex = 10;
@@ -116,7 +146,7 @@ namespace TwinCatTool
             // txtAmsNetId
             // 
             txtAmsNetId.Location = new Point(113, 12);
-            txtAmsNetId.Margin = new Padding(4, 4, 4, 4);
+            txtAmsNetId.Margin = new Padding(4);
             txtAmsNetId.Name = "txtAmsNetId";
             txtAmsNetId.Size = new Size(169, 27);
             txtAmsNetId.TabIndex = 1;
@@ -136,7 +166,7 @@ namespace TwinCatTool
             // txtPort
             // 
             txtPort.Location = new Point(360, 12);
-            txtPort.Margin = new Padding(4, 4, 4, 4);
+            txtPort.Margin = new Padding(4);
             txtPort.Name = "txtPort";
             txtPort.Size = new Size(67, 27);
             txtPort.TabIndex = 3;
@@ -146,7 +176,7 @@ namespace TwinCatTool
             // btnConnect
             // 
             btnConnect.Location = new Point(450, 9);
-            btnConnect.Margin = new Padding(4, 4, 4, 4);
+            btnConnect.Margin = new Padding(4);
             btnConnect.Name = "btnConnect";
             btnConnect.Size = new Size(90, 31);
             btnConnect.TabIndex = 4;
@@ -158,7 +188,7 @@ namespace TwinCatTool
             // 
             btnDisconnect.Enabled = false;
             btnDisconnect.Location = new Point(552, 9);
-            btnDisconnect.Margin = new Padding(4, 4, 4, 4);
+            btnDisconnect.Margin = new Padding(4);
             btnDisconnect.Name = "btnDisconnect";
             btnDisconnect.Size = new Size(90, 31);
             btnDisconnect.TabIndex = 5;
@@ -170,7 +200,7 @@ namespace TwinCatTool
             // 
             btnRefresh.Enabled = false;
             btnRefresh.Location = new Point(653, 9);
-            btnRefresh.Margin = new Padding(4, 4, 4, 4);
+            btnRefresh.Margin = new Padding(4);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(140, 31);
             btnRefresh.TabIndex = 6;
@@ -202,8 +232,8 @@ namespace TwinCatTool
             searchPanel.Controls.Add(lblSearch);
             searchPanel.Controls.Add(txtSearch);
             searchPanel.Dock = DockStyle.Top;
-            searchPanel.Location = new Point(0, 96);
-            searchPanel.Margin = new Padding(4, 4, 4, 4);
+            searchPanel.Location = new Point(0, 126);
+            searchPanel.Margin = new Padding(4);
             searchPanel.Name = "searchPanel";
             searchPanel.Size = new Size(1545, 60);
             searchPanel.TabIndex = 1;
@@ -211,7 +241,7 @@ namespace TwinCatTool
             // btnVariableRead
             // 
             btnVariableRead.Location = new Point(1395, 16);
-            btnVariableRead.Margin = new Padding(4, 4, 4, 4);
+            btnVariableRead.Margin = new Padding(4);
             btnVariableRead.Name = "btnVariableRead";
             btnVariableRead.Size = new Size(96, 27);
             btnVariableRead.TabIndex = 8;
@@ -242,7 +272,7 @@ namespace TwinCatTool
             // txtVariableName
             // 
             txtVariableName.Location = new Point(693, 16);
-            txtVariableName.Margin = new Padding(4, 4, 4, 4);
+            txtVariableName.Margin = new Padding(4);
             txtVariableName.Name = "txtVariableName";
             txtVariableName.ReadOnly = true;
             txtVariableName.Size = new Size(223, 27);
@@ -261,7 +291,7 @@ namespace TwinCatTool
             // txtVariableValue
             // 
             txtVariableValue.Location = new Point(1020, 16);
-            txtVariableValue.Margin = new Padding(4, 4, 4, 4);
+            txtVariableValue.Margin = new Padding(4);
             txtVariableValue.Name = "txtVariableValue";
             txtVariableValue.Size = new Size(223, 27);
             txtVariableValue.TabIndex = 3;
@@ -269,7 +299,7 @@ namespace TwinCatTool
             // btnVariableWrite
             // 
             btnVariableWrite.Location = new Point(1274, 16);
-            btnVariableWrite.Margin = new Padding(4, 4, 4, 4);
+            btnVariableWrite.Margin = new Padding(4);
             btnVariableWrite.Name = "btnVariableWrite";
             btnVariableWrite.Size = new Size(96, 27);
             btnVariableWrite.TabIndex = 2;
@@ -290,7 +320,7 @@ namespace TwinCatTool
             // txtSearch
             // 
             txtSearch.Location = new Point(102, 16);
-            txtSearch.Margin = new Padding(4, 4, 4, 4);
+            txtSearch.Margin = new Padding(4);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "输入变量名进行模糊搜索...";
             txtSearch.Size = new Size(337, 27);
@@ -301,10 +331,10 @@ namespace TwinCatTool
             // 
             listPanel.Controls.Add(listViewVariables);
             listPanel.Dock = DockStyle.Fill;
-            listPanel.Location = new Point(0, 156);
-            listPanel.Margin = new Padding(4, 4, 4, 4);
+            listPanel.Location = new Point(0, 186);
+            listPanel.Margin = new Padding(4);
             listPanel.Name = "listPanel";
-            listPanel.Size = new Size(1545, 544);
+            listPanel.Size = new Size(1545, 514);
             listPanel.TabIndex = 2;
             // 
             // listViewVariables
@@ -313,13 +343,20 @@ namespace TwinCatTool
             listViewVariables.FullRowSelect = true;
             listViewVariables.GridLines = true;
             listViewVariables.Location = new Point(0, 0);
-            listViewVariables.Margin = new Padding(4, 4, 4, 4);
+            listViewVariables.Margin = new Padding(4);
             listViewVariables.Name = "listViewVariables";
-            listViewVariables.Size = new Size(1545, 544);
+            listViewVariables.Size = new Size(1545, 514);
             listViewVariables.TabIndex = 0;
             listViewVariables.UseCompatibleStateImageBehavior = false;
             listViewVariables.View = View.Details;
             listViewVariables.SelectedIndexChanged += listViewVariables_SelectedIndexChanged;
+            // 
+            // menuGithub
+            // 
+            menuGithub.Name = "menuGithub";
+            menuGithub.Size = new Size(224, 26);
+            menuGithub.Text = "Github";
+            menuGithub.Click += menuGithub_Click;
             // 
             // MainForm
             // 
@@ -329,16 +366,21 @@ namespace TwinCatTool
             Controls.Add(listPanel);
             Controls.Add(searchPanel);
             Controls.Add(connectionPanel);
-            Margin = new Padding(4, 4, 4, 4);
+            Controls.Add(menuStrip);
+            MainMenuStrip = menuStrip;
+            Margin = new Padding(4);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Beckhoff TwinCAT 变量查看器";
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
             connectionPanel.ResumeLayout(false);
             connectionPanel.PerformLayout();
             searchPanel.ResumeLayout(false);
             searchPanel.PerformLayout();
             listPanel.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -366,5 +408,9 @@ namespace TwinCatTool
         private Label label3;
         private Button btnVariableRead;
         private Button btnExportTemp;
+        private MenuStrip menuStrip;
+        private ToolStripMenuItem menuHelp;
+        private ToolStripMenuItem menuAbout;
+        private ToolStripMenuItem menuGithub;
     }
 }
